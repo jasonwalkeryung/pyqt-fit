@@ -10,6 +10,7 @@ from __future__ import division, print_function, absolute_import
 from scipy import optimize
 from .compat import lrange
 import numpy as np
+import warnings
 
 
 class CurveFitting(object):
@@ -384,10 +385,10 @@ class CurveFitting(object):
             p_save[change_params] = popt
             popt = p_save
 
-        if not ier in [1, 2, 3, 4]:
-            raise RuntimeError("Unable to determine number of fit parameters. "
-                               "Error returned by scipy.optimize.leastsq:\n%s"
-                               % (mesg,))
+        if ier not in [1, 2, 3, 4]:
+            warnings.warn(RuntimeWarning("Unable to determine number of fit parameters. "
+                                         "Error returned by scipy.optimize.leastsq:\n%s"
+                                         % (mesg,)))
 
         res = residuals(ydata, fct(popt, xdata))
         if (len(res) > len(p0)) and pcov is not None:
@@ -410,4 +411,3 @@ class CurveFitting(object):
         if not self.fitted:
             self.fit()
         return self.function(self.popt, xdata)
-
