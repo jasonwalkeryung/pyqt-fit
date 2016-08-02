@@ -149,7 +149,7 @@ def bootstrap_regression(fct, xdata, ydata, repeats=3000, **kwrds):
 
 
 def getCIs(CI, *arrays):
-    #sorted_arrays = [ np.sort(a, axis=0) for a in arrays ]
+    # sorted_arrays = [ np.sort(a, axis=0) for a in arrays ]
 
     if not np.iterable(CI):
         CI = (CI,)
@@ -242,7 +242,7 @@ def bootstrap(fit, xdata, ydata, CI, shuffle_method=bootstrap_residuals,
     :rtype: :py:class:`BootstrapResult`
     :return: Estimated y on the data, on the evaluation points, the requested
         confidence intervals and, if requested, the shuffled X, Y and the full
-        estimated distributions.
+        estimated distributions + extra attrs.
     """
     xdata = np.asarray(xdata)
     ydata = np.asarray(ydata)
@@ -322,10 +322,10 @@ def bootstrap(fit, xdata, ydata, CI, shuffle_method=bootstrap_residuals,
         extra_arrays = ()
     elif multiprocess:
         result_array = result_array.copy()  # copy in local memory
-        extra_arrays = [ea.copy for ea in extra_arrays]
+        extra_arrays = [ea.copy() for ea in extra_arrays]
 
     return BootstrapResult(y_fit, y_fit(xdata), eval_points, y_eval, tuple(CI), CIs,
-                           shuffled_x, shuffled_y, result_array)
+                           shuffled_x, shuffled_y, [result_array, extra_arrays])
 
 
 def test():
