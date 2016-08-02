@@ -325,7 +325,7 @@ def bootstrap(fit, xdata, ydata, CI, shuffle_method=bootstrap_residuals,
         extra_arrays = [ea.copy() for ea in extra_arrays]
 
     return BootstrapResult(y_fit, y_fit(xdata), eval_points, y_eval, tuple(CI), CIs,
-                           shuffled_x, shuffled_y, [result_array, extra_arrays])
+                           shuffled_x, shuffled_y, [result_array] + list(extra_arrays))
 
 
 def test():
