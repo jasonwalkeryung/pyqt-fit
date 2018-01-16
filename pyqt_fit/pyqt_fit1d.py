@@ -9,7 +9,7 @@ from PyQt4.QtCore import pyqtSignature, Qt
 from PyQt4.QtGui import QMessageBox
 import matplotlib
 from numpy import nan, array, ma, arange
-from path import path
+from path import Path as path
 from .curve_fitting import CurveFitting
 import sys
 from pylab import close as close_figure

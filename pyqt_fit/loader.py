@@ -1,6 +1,6 @@
 from __future__ import print_function, absolute_import
 import inspect
-from path import path
+from path import Path as path
 import imp
 import sys
 import re
