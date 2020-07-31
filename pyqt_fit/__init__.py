@@ -14,5 +14,5 @@ from . import bootstrap, plot_fit, curve_fitting, nonparam_regression
 from .curve_fitting import CurveFitting
 from pathlib import Path
 
-with (Path(__file__).dirname() / 'version.txt').open() as f:
+with (Path(__file__).with_name('version.txt')).open() as f:
     __version__ = f.read().strip()
